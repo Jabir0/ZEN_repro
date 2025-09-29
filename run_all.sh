@@ -16,7 +16,7 @@ for model_config in "${models[@]}"; do
         for hostfile in "${hostfiles[@]}"; do
             for method in "${methods[@]}"; do
                 echo "Running: $model_name on $hostfile with top_k=$top_k and method $method"
-                colossalai run --nproc_per_node 1 --hostfile "$hostfile" \
+                colossalai run --nproc_per_node 1 \
                     train.py --model_name "$model_name" \
                     --grad_checkpoint --tp 1 --method "$method" \
                     --num_hidden_layers "$num_hidden_layers" --bucket_cap 128 \
